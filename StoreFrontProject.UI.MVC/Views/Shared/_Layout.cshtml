@@ -9,11 +9,14 @@
     <title>Hexashop Ecommerce HTML CSS Template</title>
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/bootstrap.min.css">
+    @*<link rel="stylesheet" type="text/css" href="~/Content/assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/css/font-awesome.css">
     <link rel="stylesheet" href="~/Content/assets/css/templatemo-hexashop.css">
     <link rel="stylesheet" href="~/Content/assets/css/owl-carousel.css">
-    <link rel="stylesheet" href="~/Content/assets/css/lightbox.css">
+    <link rel="stylesheet" href="~/Content/assets/css/lightbox.css">*@
+
+    @Styles.Render("~/Content/css")
+
     <!--
 
     TemplateMo 571 Hexashop
@@ -149,7 +152,7 @@
         </div>
     </footer>
 
-    <!-- jQuery -->
+    @*<!-- jQuery -->
     <script src="~/Content/assets/js/jquery-2.1.0.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/Content/assets/js/popper.js"></script>
@@ -167,7 +170,9 @@
     <script src="~/Content/assets/js/isotope.js"></script>
 
     <!-- Global Init -->
-    <script src="~/Content/assets/js/custom.js"></script>
+    <script src="~/Content/assets/js/custom.js"></script>*@
+
+    @Scripts.Render("~/bundles/template")
 
     <script>$(function() {
             var selectedClass = "";
