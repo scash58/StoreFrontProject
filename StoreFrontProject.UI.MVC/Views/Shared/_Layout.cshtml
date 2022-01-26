@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <title>Paintball Shop - @ViewBag.Title</title>
 
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" integrity="sha512-P9vJUXK+LyvAzj8otTOKzdfF1F3UYVl13+F8Fof8/2QNb8Twd6Vb+VD52I7+87tex9UXxnzPgWA3rH96RExA7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />*@
+
     @Styles.Render("~/Content/css")
 
     <!--
@@ -45,27 +47,38 @@
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="@Url.Action("Index", "Home")">Home</a></li>
                             @*<li class="scroll-to-section"><a href="#men">Men's</a></li>
-                            <li class="scroll-to-section"><a href="#women">Women's</a></li>
-                            <li class="scroll-to-section"><a href="#kids">Kid's</a></li>*@
+                                <li class="scroll-to-section"><a href="#women">Women's</a></li>
+                                <li class="scroll-to-section"><a href="#kids">Kid's</a></li>*@
                             @*<li class="submenu">
                                 <a href="javascript:;">Pages</a>
-                                <ul>*@                                    
-                                    <li><a href="@Url.Action("Products", "Home")">Products</a></li>
-                                    <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                                    @*<li><a href="single-product.html">Single Product</a></li>*@
-                                    <li><a href="@Url.Action("Contact","Home")">Contact Us</a></li>
-                                @*</ul>*@
-                            </li>
+                                <ul>*@
+                            <li><a href="@Url.Action("Products", "Home")">Products</a></li>
+                            <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+                            @*<li><a href="single-product.html">Single Product</a></li>*@
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="submenu">
+                                    <a href="javascript:;">Admin Functions</a>
+                                    <ul>
+                                        <li><a href="@Url.Action("Index", "UsersAdmin")">Users Admin</a></li>
+                                        <li><a href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            <li><a href="@Url.Action("Contact","Home")">Contact Us</a></li>
+                            @Html.Partial("_LoginPartial")
+                            @*</ul>*@
+                            @*</li>*@
                             @*<li class="submenu">
-                                <a href="javascript:;">Features</a>
-                                <ul>
-                                    <li><a href="#">Features Page 1</a></li>
-                                    <li><a href="#">Features Page 2</a></li>
-                                    <li><a href="#">Features Page 3</a></li>
-                                    <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
-                                </ul>
-                            </li>
-                            <li class="scroll-to-section"><a href="#explore">Explore</a></li>*@
+                                    <a href="javascript:;">Features</a>
+                                    <ul>
+                                        <li><a href="#">Features Page 1</a></li>
+                                        <li><a href="#">Features Page 2</a></li>
+                                        <li><a href="#">Features Page 3</a></li>
+                                        <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
+                                    </ul>
+                                </li>
+                                <li class="scroll-to-section"><a href="#explore">Explore</a></li>*@
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -77,9 +90,9 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-
-    @RenderBody()
-
+    <section>
+        @RenderBody()
+    </section>
     <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
@@ -87,9 +100,9 @@
                 <div class="col-lg-3">
                     <div class="first-item">
                         @*<div class="logo">*@
-                            @*<img src="~/Content/assets/images/white-logo.png" alt="hexashop ecommerce templatemo">*@
-                            @*<h2>PaintBall Store</h2>
-                        </div>*@
+                        @*<img src="~/Content/assets/images/white-logo.png" alt="hexashop ecommerce templatemo">*@
+                        @*<h2>PaintBall Store</h2>
+                            </div>*@
                         <ul>
                             <li><a href="#"><h2>Paintball Store</h2></a></li>
                             <li><a href="#">16501 Collins Ave, St. Louis, MO 63125, United States</a></li>
@@ -134,10 +147,10 @@
                             <br>Distributed By: <a href="https://themewagon.com" target="_blank" title="free & premium responsive templates">ThemeWagon</a>
                         </p>
                         <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fab fa-behance"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -145,18 +158,21 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/fontawesome.min.js" integrity="sha512-ywaT8M9b+VnJ+jNG14UgRaKg+gf8yVBisU2ce+YJrlWwZa9BaZAE5GK5Yd7CBcP6UXoAnziRQl40/u/qwVZi4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     @Scripts.Render("~/bundles/template")
 
-    <script>$(function() {
+    <script>
+    $(function () {
             var selectedClass = "";
-            $("p").click(function(){
-            selectedClass = $(this).attr("data-rel");
-            $("#portfolio").fadeTo(50, 0.1);
-                $("#portfolio div").not("."+selectedClass).fadeOut();
-            setTimeout(function() {
-              $("."+selectedClass).fadeIn();
-              $("#portfolio").fadeTo(50, 1);
-            }, 500);
+            $("p").click(function () {
+                selectedClass = $(this).attr("data-rel");
+                $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("." + selectedClass).fadeOut();
+                setTimeout(function () {
+                    $("." + selectedClass).fadeIn();
+                    $("#portfolio").fadeTo(50, 1);
+                }, 500);
 
             });
         });

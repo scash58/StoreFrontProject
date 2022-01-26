@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations; //added for metadata and validation
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StoreFrontProject.Data.EF//.Metadata - name must match namespace of classes these partial classes will buddy up with.
 {
@@ -245,9 +246,15 @@ namespace StoreFrontProject.Data.EF//.Metadata - name must match namespace of cl
 
     public class OrderDetailsMetadata
     {
+        [Key]
+        [Column(Order=1)]
+        [ForeignKey("Order")]
         [Required(ErrorMessage = "*")]
         public int OrderID { get; set; }
 
+        [Key]
+        [Column(Order=2)]
+        [ForeignKey("Product")]
         [Required(ErrorMessage = "*")]
         public int ProductID { get; set; }
 
@@ -258,8 +265,8 @@ namespace StoreFrontProject.Data.EF//.Metadata - name must match namespace of cl
         [Range(0, double.MaxValue, ErrorMessage = "* Value must be a valid number greater than 0")]
         [DisplayFormat(NullDisplayText = "[-N/A-]")]
         public Nullable<float> Discount { get; set; }
-    }
 
+    }
 
     [MetadataType(typeof(OrderDetailsMetadata))]
     public partial class OrderDetails { }
@@ -281,6 +288,7 @@ namespace StoreFrontProject.Data.EF//.Metadata - name must match namespace of cl
 
         //public Nullable<int> CategoryID { get; set; }
 
+        [Display(Name = "Unit Price")]
         [Range(0, double.MaxValue, ErrorMessage = "* Value must be a valid number, 0 or larger.")]
         [DisplayFormat(DataFormatString = "{0:c}", NullDisplayText = "[-N/A-]")]
         public Nullable<decimal> UnitPrice { get; set; }

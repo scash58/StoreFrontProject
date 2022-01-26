@@ -1,0 +1,47 @@
+﻿@model StoreFrontProject.Data.EF.Category
+
+@{
+    ViewBag.Title = Model.CategoryName + " Details";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+
+                    <div class="col-md-12">
+                        <div>
+                            <h4>Category</h4>
+                            <hr />
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CategoryName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CategoryDesc)
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => model.CategoryName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.CategoryDesc)
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryID }, new { @class = "btn btn-primary" }) |
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

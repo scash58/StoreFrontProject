@@ -1,0 +1,78 @@
+﻿@model IEnumerable<StoreFrontProject.Data.EF.OrderDetails>
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="productWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-12">
+
+                    <div class="col-md-12">
+                        @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                        {
+                            <p>
+                                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+                            </p>
+                        }
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OrderID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Discount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Quantity)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product.ProductName)
+                                </th>
+                                @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                                {
+                                    <th></th>
+                                }
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.OrderID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Discount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                    </td>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <td class="text-right">
+                                            @Html.ActionLink(" ", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary fas fa-pencil-alt" })
+                                            @if (User.IsInRole("Admin"))
+                                            {
+                                                @Html.ActionLink(" ", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-success fas fa-info" })
+                                                @Html.ActionLink(" ", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger fa fa-trash" })
+                                            }
+                                        </td>
+                                    }
+
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

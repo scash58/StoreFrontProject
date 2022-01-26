@@ -1,36 +1,51 @@
 ﻿@model IEnumerable<StoreFrontProject.UI.MVC.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "User Admin Controls";
 }
 
-<h2>Index</h2>
+<div class="main-banner" id="top">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <h2>@ViewBag.Title.</h2>
+                <div class="formContainer col-md-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>
+                                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.UserName)
+                                    </th>
+                                    <th class="text-right">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
+                                    </th>
+                                </tr>
 
-        </th>
-    </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserName)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-primary fas fa-pencil-alt" })
+                                            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "btn btn-success fas fa-info" })
+                                            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash" })
+                                        </td>
+                                    </tr>
+                                }
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+                            </table>
 
-</table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

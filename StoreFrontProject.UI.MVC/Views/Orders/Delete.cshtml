@@ -1,0 +1,96 @@
+﻿@model StoreFrontProject.Data.EF.Order
+
+@{
+    ViewBag.Title = "Delete " + Model.Customer.FullName + "'s Order";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+
+                    <div class="col-md-12">
+                        <h3>Are you sure you want to delete this?</h3>
+                        <div>
+                            <h4>Order</h4>
+                            <hr />
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OrderDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ShippedDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Freight)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ShipAddress)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ShipCity)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ShipState)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ShipCountry)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ShipZip)
+                                    </th>
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.Customer.FullName)
+                                    </th>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => model.OrderDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ShippedDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Freight)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ShipAddress)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ShipCity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ShipState)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ShipCountry)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ShipZip)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(model => model.Customer.FullName)
+                                    </td>*@
+                                </tr>
+                            </table>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Delete" class="btn btn-warning" />
+                                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

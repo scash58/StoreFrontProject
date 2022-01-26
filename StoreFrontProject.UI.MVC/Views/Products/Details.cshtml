@@ -1,0 +1,68 @@
+﻿@model StoreFrontProject.Data.EF.Product
+
+@{
+    ViewBag.Title = Model.ProductName + " Details";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+                    <div>
+                        <h4>Product</h4>
+                        <hr />
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ProductName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UnitPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ProductDesc)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ProductImage)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Category.CategoryName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Manufacturer.ManufacturerName)
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => model.ProductName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.UnitPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ProductDesc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ProductImage)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Category.CategoryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Manufacturer.ManufacturerName)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

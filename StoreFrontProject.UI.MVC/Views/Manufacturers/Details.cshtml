@@ -1,0 +1,44 @@
+﻿@model StoreFrontProject.Data.EF.Manufacturer
+
+@{
+    ViewBag.Title = Model.ManufacturerName + " Details";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+                    <div>
+                        <h4>Manufacturer</h4>
+                        <hr />
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ManufacturerName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ManufacturerDesc)
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => model.ManufacturerName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ManufacturerDesc)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.ManufacturerID }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

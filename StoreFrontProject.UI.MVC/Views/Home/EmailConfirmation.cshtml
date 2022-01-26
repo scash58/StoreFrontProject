@@ -1,0 +1,26 @@
+﻿@model StoreFrontProject.UI.MVC.Models.ContactViewModel
+
+@{
+    ViewBag.Title = "Email Confirmation";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+
+                    <div class="col-md-12">
+
+                        <h4>We have recieved the following message:</h4>
+                        <p>@Model.Message</p>
+                        <h4>We will respond as soon as we can to @Model.Email. Thank you for contacting us!</h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

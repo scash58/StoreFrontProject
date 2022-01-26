@@ -1,0 +1,80 @@
+﻿@model StoreFrontProject.Data.EF.Employee
+
+@{
+    ViewBag.Title = Model.FullName + " Details";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+                    <div>
+                        <h4>Employee</h4>
+                        <hr />
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FullName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.City)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.State)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ZipCode)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Department.DepartmentName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ReportsToID)
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => model.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.City)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.State)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ZipCode)
+                                </td>
+                                <th>
+                                    @Html.DisplayFor(model => model.Department.DepartmentName)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => model.Employee1.FirstName)
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

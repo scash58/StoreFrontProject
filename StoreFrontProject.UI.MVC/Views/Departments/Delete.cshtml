@@ -1,0 +1,46 @@
+﻿@model StoreFrontProject.Data.EF.Department
+
+@{
+    ViewBag.Title = "Delete " + Model.DepartmentName;
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+                    <div class="col-md-12">
+                        <h3>Are you sure you want to delete this?</h3>
+                        <div>
+                            <h4>Department</h4>
+                            <hr />
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DepartmentName)
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => model.DepartmentName)
+                                    </td>
+                                </tr>
+                            </table>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Delete" class="btn btn-warning" />
+                                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

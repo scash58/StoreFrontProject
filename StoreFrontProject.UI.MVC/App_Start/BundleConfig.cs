@@ -42,9 +42,11 @@ namespace StoreFrontProject.UI.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/assets/css/bootstrap.min.css",
                         "~/Content/assets/css/font-awesome.css",
+                        "~/Content/assets/css/all.css",
                         "~/Content/assets/css/templatemo-hexashop.css",
                         "~/Content/assets/css/owl-carousel.css",
-                        "~/Content/assets/css/lightbox.css"
+                        "~/Content/assets/css/lightbox.css",
+                        "~/Content/assets/css/Style.css"
                       ));
         }
     }

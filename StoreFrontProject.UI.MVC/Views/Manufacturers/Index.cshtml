@@ -1,0 +1,67 @@
+﻿@model IEnumerable<StoreFrontProject.Data.EF.Manufacturer>
+
+@{
+    ViewBag.Title = "Manufacturers";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+
+                    <div class="col-md-12">
+
+                        @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                        {
+                            <p>
+                                @Html.ActionLink("Add Manufacturer", "Create", null, new { @class = "btn btn-success" })
+                            </p>
+                        }
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ManufacturerName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ManufacturerDesc)
+                                </th>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <th></th>
+                                }
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ManufacturerName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ManufacturerDesc)
+                                    </td>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                    <td class="text-right">
+                                        @Html.ActionLink(" ", "Edit", new { id = item.ManufacturerID }, new { @class = "btn btn-primary fas fa-pencil-alt" })
+                                        @Html.ActionLink(" ", "Details", new { id = item.ManufacturerID }, new { @class = "btn btn-success fas fa-info" })
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            @Html.ActionLink(" ", "Delete", new { id = item.ManufacturerID }, new { @class = "btn btn-danger fa fa-trash" })
+                                        }
+                                    </td>
+                                    }
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

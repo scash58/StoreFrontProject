@@ -1,0 +1,54 @@
+﻿@model StoreFrontProject.Data.EF.OrderDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="indexWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-6">
+                    <h4>OrderDetails</h4>
+                    <hr />
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OrderID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Discount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Quantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Product.ProductName)
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => model.OrderID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Discount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Product.ProductName)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

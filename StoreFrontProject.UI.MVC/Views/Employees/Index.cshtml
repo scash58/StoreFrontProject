@@ -1,0 +1,99 @@
+﻿@model IEnumerable<StoreFrontProject.Data.EF.Employee>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="productWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-12">
+
+                    <div class="col-md-12">
+
+                        @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                        {
+                            <p>
+                                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+                            </p>
+                        }
+                        <table class="table" style="font-size: 14px">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FullName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.City)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.State)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ZipCode)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Department.DepartmentName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ReportsToID)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.City)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.State)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ZipCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Employee1.FirstName)
+                                </td>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <td class="text-right">
+                                        @Html.ActionLink(" ", "Edit", new { id = item.EmployeeID }, new { @class = "btn btn-primary fas fa-pencil-alt" })
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            @Html.ActionLink(" ", "Details", new { id = item.EmployeeID }, new { @class = "btn btn-success fas fa-info" })
+                                            @Html.ActionLink(" ", "Delete", new { id = item.EmployeeID }, new { @class = "btn btn-danger fa fa-trash" })
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
