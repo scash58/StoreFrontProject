@@ -1,17 +1,25 @@
-﻿using StoreFrontProject.UI.MVC.Models; //added for access to the ContactViewModel
+﻿using StoreFrontProject.Data.EF; //added to gain access to PaintballStoreEntities
+using StoreFrontProject.UI.MVC.Models; //added for access to the ContactViewModel
 using System; //added
 using System.Net;
 using System.Net.Mail; //added
 using System.Web.Mvc; //added
+using System.Data.Entity;
+using System.Linq;
+using PagedList; //added this using statement after installing pagedList.MVC through the Nuget Package Manager
+using PagedList.Mvc;
 
 namespace StoreFrontProject.UI.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        private PaintballStoreEntities db = new PaintballStoreEntities();
+
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var products = db.Products.Include(p => p.Category).Include(p => p.Manufacturer);
+            return View(products.ToList());
         }
 
         [HttpGet]
@@ -76,11 +84,28 @@ namespace StoreFrontProject.UI.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Products()
+        public ActionResult Products(string searchString, int page = 1)
         {
             ViewBag.Message = "Your products page.";
 
-            return View();
+            int pageSize = 6; //Set how many records/objects are shown per "page"
+
+            var products = db.Products.Include(p => p.Category).Include(p => p.Manufacturer).OrderBy(p => p.ProductName).ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = (
+                                from p in products
+                                where p.ProductName.ToLower().Contains(searchString.ToLower()) || 
+                                    p.Manufacturer.ManufacturerName.ToLower().Contains(searchString.ToLower()) ||
+                                    p.Category.CategoryName.ToLower().Contains(searchString.ToLower())
+                                select p
+                         ).ToList();
+            }
+
+            ViewBag.SearchString = searchString;
+
+            return View(products.ToPagedList(page, pageSize));
         }
     }
 }

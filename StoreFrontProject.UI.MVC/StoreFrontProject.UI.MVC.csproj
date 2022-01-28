@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -190,6 +196,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\ImageUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\css\all.css" />
@@ -201,6 +208,99 @@
     <Content Include="Content\assets\css\owl-carousel.css" />
     <Content Include="Content\assets\css\Style.css" />
     <Content Include="Content\assets\css\templatemo-hexashop.css" />
+    <Content Include="Content\assets\images\about-us\about-left-image.jpg" />
+    <Content Include="Content\assets\images\about-us\team-member-01.jpg" />
+    <Content Include="Content\assets\images\about-us\team-member-02.jpg" />
+    <Content Include="Content\assets\images\about-us\team-member-03.jpeg" />
+    <Content Include="Content\assets\images\banners\aboutus-banner.jpg" />
+    <Content Include="Content\assets\images\banners\productbanner-612x612.jpg" />
+    <Content Include="Content\assets\images\homepage\banner-right-image-02.jpg" />
+    <Content Include="Content\assets\images\homepage\banner-right-image-03.jpg" />
+    <Content Include="Content\assets\images\homepage\banner-right-image-04.jpg" />
+    <Content Include="Content\assets\images\homepage\banner-right-image-o1.jpg" />
+    <Content Include="Content\assets\images\homepage\left-banner-image.jpg" />
+    <Content Include="Content\assets\images\products\BT_Paint-Grenade_Yellowfill.jpg" />
+    <Content Include="Content\assets\images\products\CMI_RemoteLine.jpg" />
+    <Content Include="Content\assets\images\products\Core_O-Ring_100Pack_CO2.jpg" />
+    <Content Include="Content\assets\images\products\Core_RemoteLine.jpg" />
+    <Content Include="Content\assets\images\products\D3FY_Sports-Paintballs-1000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\Empire-Chest_Protector-Black-Grey.jpg" />
+    <Content Include="Content\assets\images\products\Empire_Gun-Axe_SYX_1.5.jpg" />
+    <Content Include="Content\assets\images\products\Empire_Paintballs_Heat_2000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\Empire_Paintballs_Marballizer_2000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\Empire_Slide-Shorts-NeoSkin.jpg" />
+    <Content Include="Content\assets\images\products\First_Strick-CompressedAir-HalfPint.jpg" />
+    <Content Include="Content\assets\images\products\First_Strike-600Rounds-Smoke_Green_Fill.jpg" />
+    <Content Include="Content\assets\images\products\First_Strike-600Rounds-Smoke_Orange_Fill.jpg" />
+    <Content Include="Content\assets\images\products\GI-Sportz_Paintballs_2000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\GI_Sportz-CO2Tank-24oz.jpg" />
+    <Content Include="Content\assets\images\products\HK-Army-CompressedAirTank.jpg" />
+    <Content Include="Content\assets\images\products\HK-Army_Paintballs_2000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\HK-Knee_Pads-HSTL_Camo.jpg" />
+    <Content Include="Content\assets\images\products\JT-Chest_Protector-Black.jpg" />
+    <Content Include="Content\assets\images\products\JT_CO2-Cartridge_90Gram.jpg" />
+    <Content Include="Content\assets\images\products\JT_Paint-Grenade_Yellow-Fill.jpg" />
+    <Content Include="Content\assets\images\products\Kingman_Gun-Spyder_Fenix-DiamondBlack.jpg" />
+    <Content Include="Content\assets\images\products\Kingman_Gun-Spyder_Fenix-GlossBlue.jpg" />
+    <Content Include="Content\assets\images\products\Kingman_Gun-Spyder_Fenix-GlossRed.jpg" />
+    <Content Include="Content\assets\images\products\Kingman_Gun-Spyder_Fenix-OliveGreen.jpg" />
+    <Content Include="Content\assets\images\products\Ninja_CompressedAir.jpg" />
+    <Content Include="Content\assets\images\products\NoImage.png" />
+    <Content Include="Content\assets\images\products\Sly_Mask-Annex_MI7-Black.jpg" />
+    <Content Include="Content\assets\images\products\Sly_Mask-Annex_MI7-Tan.jpg" />
+    <Content Include="Content\assets\images\products\Tippman-98Custom.jpg" />
+    <Content Include="Content\assets\images\products\Tippman-A5.jpg" />
+    <Content Include="Content\assets\images\products\Tippman-FT-12.jpg" />
+    <Content Include="Content\assets\images\products\Tippman-Stormer_Tactical.jpg" />
+    <Content Include="Content\assets\images\products\Tippmann_CO2-Tank-24OZ.jpg" />
+    <Content Include="Content\assets\images\products\Tippmann_Paint-Gernade_Pink-Fill.jpg" />
+    <Content Include="Content\assets\images\products\Tippmann_RemoteLine.jpg" />
+    <Content Include="Content\assets\images\products\t_BT_Paint-Grenade_Yellowfill.jpg" />
+    <Content Include="Content\assets\images\products\t_CMI_RemoteLine.jpg" />
+    <Content Include="Content\assets\images\products\t_Core_O-Ring_100Pack_CO2.jpg" />
+    <Content Include="Content\assets\images\products\t_Core_RemoteLine.jpg" />
+    <Content Include="Content\assets\images\products\t_D3FY_Sports-Paintballs-1000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\t_Empire-Chest_Protector-Black-Grey.jpg" />
+    <Content Include="Content\assets\images\products\t_Empire_Gun-Axe_SYX_1.5.jpg" />
+    <Content Include="Content\assets\images\products\t_Empire_Paintballs_Heat_2000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\t_Empire_Paintballs_Marballizer_2000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\t_Empire_Slide-Shorts-NeoSkin.jpg" />
+    <Content Include="Content\assets\images\products\t_First_Strick-CompressedAir-HalfPint.jpg" />
+    <Content Include="Content\assets\images\products\t_First_Strike-600Rounds-Smoke_Green_Fill.jpg" />
+    <Content Include="Content\assets\images\products\t_First_Strike-600Rounds-Smoke_Orange_Fill.jpg" />
+    <Content Include="Content\assets\images\products\t_GI-Sportz_Paintballs_2000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\t_GI_Sportz-CO2Tank-24oz.jpg" />
+    <Content Include="Content\assets\images\products\t_HK-Army-CompressedAirTank.jpg" />
+    <Content Include="Content\assets\images\products\t_HK-Army_Paintballs_2000Rounds.jpg" />
+    <Content Include="Content\assets\images\products\t_HK-Knee_Pads-HSTL_Camo.jpg" />
+    <Content Include="Content\assets\images\products\t_JT-Chest_Protector-Black.jpg" />
+    <Content Include="Content\assets\images\products\t_JT_CO2-Cartridge_90Gram.jpg" />
+    <Content Include="Content\assets\images\products\t_JT_Paint-Grenade_Yellow-Fill.jpg" />
+    <Content Include="Content\assets\images\products\t_Kingman_Gun-Spyder_Fenix-DiamondBlack.jpg" />
+    <Content Include="Content\assets\images\products\t_Kingman_Gun-Spyder_Fenix-GlossBlue.jpg" />
+    <Content Include="Content\assets\images\products\t_Kingman_Gun-Spyder_Fenix-GlossRed.jpg" />
+    <Content Include="Content\assets\images\products\t_Kingman_Gun-Spyder_Fenix-OliveGreen.jpg" />
+    <Content Include="Content\assets\images\products\t_Ninja_CompressedAir.jpg" />
+    <Content Include="Content\assets\images\products\t_NoImage.png" />
+    <Content Include="Content\assets\images\products\t_Sly_Mask-Annex_MI7-Black.jpg" />
+    <Content Include="Content\assets\images\products\t_Sly_Mask-Annex_MI7-Tan.jpg" />
+    <Content Include="Content\assets\images\products\t_Tippman-98Custom.jpg" />
+    <Content Include="Content\assets\images\products\t_Tippman-A5.jpg" />
+    <Content Include="Content\assets\images\products\t_Tippman-FT-12.jpg" />
+    <Content Include="Content\assets\images\products\t_Tippman-Stormer_Tactical.jpg" />
+    <Content Include="Content\assets\images\products\t_Tippmann_CO2-Tank-24OZ.jpg" />
+    <Content Include="Content\assets\images\products\t_Tippmann_Paint-Gernade_Pink-Fill.jpg" />
+    <Content Include="Content\assets\images\products\t_Tippmann_RemoteLine.jpg" />
+    <Content Include="Content\assets\images\products\t_V-Force_Mask-Grill-SE_Spekta.jpg" />
+    <Content Include="Content\assets\images\products\t_V-Force_Mask-Grill-SE_White-Black.jpg" />
+    <Content Include="Content\assets\images\products\t_V-Force_Mask-Grill-SE_Zebra.jpg" />
+    <Content Include="Content\assets\images\products\t_Valken_Chest-Protector_Black.jpg" />
+    <Content Include="Content\assets\images\products\t_Valken_Gun-SW-1Blackhawk-Whiskey.jpg" />
+    <Content Include="Content\assets\images\products\V-Force_Mask-Grill-SE_Spekta.jpg" />
+    <Content Include="Content\assets\images\products\V-Force_Mask-Grill-SE_White-Black.jpg" />
+    <Content Include="Content\assets\images\products\V-Force_Mask-Grill-SE_Zebra.jpg" />
+    <Content Include="Content\assets\images\products\Valken_Chest-Protector_Black.jpg" />
+    <Content Include="Content\assets\images\products\Valken_Gun-SW-1Blackhawk-Whiskey.jpg" />
     <Content Include="Content\assets\webfonts\fa-brands-400.svg" />
     <Content Include="Content\assets\webfonts\fa-regular-400.svg" />
     <Content Include="Content\assets\webfonts\fa-solid-900.svg" />
@@ -263,6 +363,7 @@
     <Content Include="Content\assets\js\scrollreveal.min.js" />
     <Content Include="Content\assets\js\slick.js" />
     <Content Include="Content\assets\js\waypoints.min.js" />
+    <Content Include="Content\assets\css\PagedList.css" />
     <Content Include="_Archive\_OriginalContent\bootstrap-theme.css" />
     <Content Include="_Archive\_OriginalContent\bootstrap-theme.min.css" />
     <Content Include="_Archive\_OriginalContent\bootstrap.css" />

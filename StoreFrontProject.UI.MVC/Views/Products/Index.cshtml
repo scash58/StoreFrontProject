@@ -20,67 +20,73 @@
                                 @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
                             </p>
                         }
-                        <table class="table" style="font-size: 14px">
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ProductName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.UnitPrice)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ProductDesc)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ProductImage)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Category.CategoryName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Manufacturer.ManufacturerName)
-                                </th>
-                                @if (User.IsInRole("Admin") || User.IsInRole("User"))
-                                {
-                                    <th></th>
-                                }
-                            </tr>
-
-                            @foreach (var item in Model)
-                            {
+                        <table class="table data-table table-striped" style="font-size: 14px">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ProductName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.UnitPrice)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ProductDesc)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ProductImage)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Manufacturer.ManufacturerName)
-                                    </td>
-                                    @if (User.Identity.IsAuthenticated)
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ProductName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.UnitPrice)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ProductDesc)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ProductImage)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Category.CategoryName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Manufacturer.ManufacturerName)
+                                    </th>
+                                    @if (User.IsInRole("Admin") || User.IsInRole("User"))
                                     {
-                                        <td class="text-right">
-                                            @Html.ActionLink(" ", "Edit", new { id = item.ProductID }, new { @class = "btn btn-primary fas fa-pencil-alt" })
-                                            @if (User.IsInRole("Admin"))
-                                            {
-                                                @Html.ActionLink(" ", "Details", new { id = item.ProductID }, new { @class = "btn btn-success fas fa-info" })
-                                                @Html.ActionLink(" ", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger fa fa-trash" })
-                                            }
-                                        </td>
+                                        <th></th>
                                     }
                                 </tr>
-                            }
+                            </thead>
 
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductDesc)
+                                        </td>
+                                        <td>
+                                            @*@Html.DisplayFor(modelItem => item.ProductImage)*@
+                                            @* Image Uplead utility step 1 *@
+                                            @*@Html.DisplayFor(modelItem => item.BookImage)*@
+                                            <img src="~/Content/assets/images/products/t_@item.ProductImage" alt="Product Image" title="@item.ProductImage" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Manufacturer.ManufacturerName)
+                                        </td>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <td class="text-right">
+                                                @Html.ActionLink(" ", "Edit", new { id = item.ProductID }, new { @class = "btn btn-primary fas fa-pencil-alt" })
+                                                @if (User.IsInRole("Admin"))
+                                                {
+                                                    @Html.ActionLink(" ", "Details", new { id = item.ProductID }, new { @class = "btn btn-success fas fa-info" })
+                                                    @Html.ActionLink(" ", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger fa fa-trash" })
+                                                }
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -88,3 +94,14 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            $('.data-table').DataTable();
+        });
+
+    </script>
+}

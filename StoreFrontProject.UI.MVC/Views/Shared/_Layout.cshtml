@@ -12,6 +12,11 @@
 
     @Styles.Render("~/Content/css")
 
+    <!--DataTables CSS-->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+
+    <link href="~/Content/assets/css/PagedList.css" rel="stylesheet" />
+
     <!--
 
     TemplateMo 571 Hexashop
@@ -163,7 +168,7 @@
     @Scripts.Render("~/bundles/template")
 
     <script>
-    $(function () {
+        $(function () {
             var selectedClass = "";
             $("p").click(function () {
                 selectedClass = $(this).attr("data-rel");
@@ -177,6 +182,9 @@
             });
         });
     </script>
+
+    <!--DataTables JS-->
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
     @RenderSection("scripts", required: false)
 

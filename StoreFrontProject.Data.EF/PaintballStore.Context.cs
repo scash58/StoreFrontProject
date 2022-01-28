@@ -22,8 +22,6 @@ namespace StoreFrontProject.Data.EF
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<OrderDetails>().HasKey(ob => new { ob.OrderID, ob.ProductID });
-
             throw new UnintentionalCodeFirstException();
         }
     
@@ -35,6 +33,5 @@ namespace StoreFrontProject.Data.EF
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails1 { get; set; }
-
     }
 }
