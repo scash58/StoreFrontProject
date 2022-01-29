@@ -46,7 +46,7 @@
                                     @Html.DisplayFor(model => model.ProductDesc)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(model => model.ProductImage)
+                                    <img src="~/Content/assets/images/products/t_@Model.ProductImage" alt="Product Image" title="@Model.ProductImage" />
                                 </td>
                                 <td>
                                     @Html.DisplayFor(model => model.Category.CategoryName)
@@ -57,8 +57,19 @@
                             </tr>
                         </table>
                     </div>
+                    @* Shopping Cart Step 2 *@
                     <p>
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-primary" })
+                        @using (Html.BeginForm("AddToCart", "Products", new { @bookID = Model.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+                        {
+                            @Html.HiddenFor(x => x.ProductID)
+                            <span class="label">Quantity: </span>
+                            @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 50px;display: inline;" })
+                            <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                        }
+                    </p>
+
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-secondary" })
                         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
                     </p>
                 </div>

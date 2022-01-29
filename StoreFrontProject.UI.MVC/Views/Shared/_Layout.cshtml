@@ -84,6 +84,43 @@
                                     </ul>
                                 </li>
                                 <li class="scroll-to-section"><a href="#explore">Explore</a></li>*@
+
+                            @* Shopping Cart Step 8 *@
+                            @if (Session["cart"] != null)
+                            {
+
+
+                                <li class="nav-item">
+                                    @{
+                                        Dictionary<int, StoreFrontProject.UI.MVC.Models.CartItemViewModel> prods =
+                                            (Dictionary<int, StoreFrontProject.UI.MVC.Models.CartItemViewModel>)Session["cart"];
+                                        var prodCount = prods.Sum(p => p.Value.Qty);
+
+                                    }
+                                    <a href="@Url.Action("index", "ShoppingCart")">
+                                        <i class="fa fa-shopping-cart fa-lg"></i>
+                                        <sup style="color:white;
+                                                background-color:red;
+                                                border-radius:40%;
+                                                display:inline-block;
+
+                                                height:1em;
+                                                padding:1em;
+                                                text-align:center">
+                                            @prodCount
+
+                                        </sup>
+                                    </a>
+
+
+                                </li>
+                            }
+                            @*else
+                            {
+                                <a href="@Url.Action("index", "ShoppingCart")">
+                                    <i class="fa fa-shopping-cart fa-lg"></i>
+                                </a>
+                            }*@
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>

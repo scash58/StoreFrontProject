@@ -60,7 +60,18 @@
                         <div class="down-content">
                             <h4>@Html.DisplayFor(modelItem => item.ProductName)</h4>
                             <span>@Html.DisplayFor(modelItem => item.UnitPrice)</span>
+
                         </div>
+                        @* Shopping Cart Step 2 *@
+                        <p class="text-center">
+                            @using (Html.BeginForm("AddToCart", "Products", new { @productID = item.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+                            {
+                                @Html.HiddenFor(modelItem => item.ProductID)
+                                <span class="label test-left">Quantity: </span>
+                                @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
+                                <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                            }
+                        </p>
                     </div>
                 </div>
             }

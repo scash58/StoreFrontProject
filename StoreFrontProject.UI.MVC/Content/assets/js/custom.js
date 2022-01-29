@@ -2,7 +2,7 @@
 	
 	"use strict";
 	$('.owl-men-item').owlCarousel({
-		items:5,
+		items:10,
 		loop:true,
 		dots: true,
 		nav: true,
@@ -21,7 +21,7 @@
 	})
 
 	$('.owl-women-item').owlCarousel({
-		items:5,
+		items:10,
 		loop:true,
 		dots: true,
 		nav: true,
@@ -40,7 +40,7 @@
 	 })
 
 	$('.owl-kid-item').owlCarousel({
-		items:5,
+		items:10,
 		loop:true,
 		dots: true,
 		nav: true,
