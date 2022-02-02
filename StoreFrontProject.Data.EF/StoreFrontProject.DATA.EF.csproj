@@ -91,6 +91,9 @@
       <DependentUpon>PaintballStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDetail.cs">
+      <DependentUpon>PaintballStore.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="PaintballStore.edmx">

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<StoreFrontProject.Data.EF.UserDetail>
+
+@{
+    ViewBag.Title = "Users Details";
+}
+
+<div class="main-banner" id="top">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <h2>@ViewBag.Title.</h2>
+                <div class="formContainer col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                            {
+                                <p>
+                                    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+                                </p>
+                            }
+                            <table class="table data-table table-striped" style="font-size: 14px">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.LastName)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LastName)
+                                            </td>
+                                            <td class="text-right">
+                                                @Html.ActionLink(" ", "Details", new { id = item.UserID }, new { @class = "btn btn-success fas fa-info" })
+                                                @if (User.IsInRole("Admin"))
+                                                {
+                                                    @Html.ActionLink(" ", "Edit", new { id = item.UserID }, new { @class = "btn btn-primary fas fa-pencil-alt" })
+                                                    @Html.ActionLink(" ", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger fa fa-trash" })
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

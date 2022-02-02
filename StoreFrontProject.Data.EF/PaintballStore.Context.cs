@@ -33,5 +33,6 @@ namespace StoreFrontProject.Data.EF
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails1 { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
     }
 }

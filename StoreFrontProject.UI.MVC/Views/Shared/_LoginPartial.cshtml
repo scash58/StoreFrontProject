@@ -1,21 +1,57 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated) {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+@using StoreFrontProject.Data.EF
+@{
+    //Added to be able to Substring() Username below so full email address is not shown
+    int location = User.Identity.GetUserName().IndexOf("@");
+}
+
+@if (Request.IsAuthenticated)
+{
+    //Custom User Details
+    //First we added the UserDetails table to our BookStorePlus DB
+    //We updated the EDMX in the data layer and added the UserDetails table
+    //Now we will use info from UserDetails, to display the user's first name
+    //Anytime we need UserDetails info, we will complete the following:
+    //-add using statement for microsoft.AspNet.Identity
+    //-User.Identity.GetUserID() then we wil use LINQ to find the matching record on UserDetails
+    //-if there is no match, we will display "Guest" instead of a first name
+
+    PaintballStoreEntities db = new PaintballStoreEntities();
+    string userID = User.Identity.GetUserId();
+    UserDetail currentUser = db.UserDetails.Where(ud => ud.UserID == userID).FirstOrDefault();
+    string userFN = "Guest"; //default this to Guest in case no match was found on the UserDetails table above
+
+    //if we did get a match for the current user id on the UserDetails table, we will use info from that obj to populate the
+    //variables above
+    if (currentUser != null)
+    {
+        userFN = currentUser.FirstName;
+    }
+
+    if (User.IsInRole("Admin"))
+    {
+        userFN = "Admin";
+    }
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
         @Html.AntiForgeryToken()
 
         @*<ul class="nav navbar-nav navbar-right">*@
-            <li class="submenu">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                <ul>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                </ul>
-            </li>
+        <li class="submenu">
+            @* Updated below - doesn't show full email *@
+            @Html.ActionLink($"Hi {userFN}", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            <ul>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        </li>
         @*</ul>*@
     }
 }
-else {
+else
+{
     @*<ul class="nav navbar-nav navbar-right">*@
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     @*</ul>*@
 }
