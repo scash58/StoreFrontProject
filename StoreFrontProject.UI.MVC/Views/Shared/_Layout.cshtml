@@ -12,10 +12,16 @@
 
     @Styles.Render("~/Content/css")
 
+    @* ADDED jQueryUI CSS CDN - note: themenames are swappable.*@
+    @*NOTE, Module 5 AJAX: find names at jqueryui.com/themeroller, gallery tab (like excite-bike, south-street or sunny)*@
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css">
+
     <!--DataTables CSS-->
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 
     <link href="~/Content/assets/css/PagedList.css" rel="stylesheet" />
+
+    @RenderSection("htmlHead", required: false)
 
     <!--
 
@@ -67,6 +73,8 @@
                                     <ul>
                                         <li><a href="@Url.Action("Index", "UsersAdmin")">Users Admin</a></li>
                                         <li><a href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a></li>
+                                        <li><a href="@Url.Action("Index", "Products")">Products</a></li>
+                                        <li><a href="@Url.Action("Index", "Categories")">Categories</a></li>
                                     </ul>
                                 </li>
                             }
@@ -116,11 +124,11 @@
                                 </li>
                             }
                             @*else
-                            {
-                                <a href="@Url.Action("index", "ShoppingCart")">
-                                    <i class="fa fa-shopping-cart fa-lg"></i>
-                                </a>
-                            }*@
+                                {
+                                    <a href="@Url.Action("index", "ShoppingCart")">
+                                        <i class="fa fa-shopping-cart fa-lg"></i>
+                                    </a>
+                                }*@
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -133,7 +141,11 @@
     </header>
     <!-- ***** Header Area End ***** -->
     <section>
+
+        
         @RenderBody()
+        
+
     </section>
     <!-- ***** Footer Start ***** -->
     <footer>
@@ -219,6 +231,9 @@
             });
         });
     </script>
+
+    <!-- ADDED jQuery Ajax CDN-->
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
 
     <!--DataTables JS-->
     <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>

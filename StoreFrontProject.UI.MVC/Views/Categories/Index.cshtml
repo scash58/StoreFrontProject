@@ -16,11 +16,25 @@
 
                         @if (User.IsInRole("Admin") || User.IsInRole("User"))
                         {
-                            <p>
-                                @Html.ActionLink("Add Category", "Create", null, new { @class = "btn btn-success" })
+                            @*<p>
+                        @Html.ActionLink("Add Category", "Create", null, new { @class = "btn btn-success" })
+                    </p>*@
+
+                            @* Ajax - Step 11 *@
+
+                            <p class="row">
+                                <div class="col-md-3">
+                                    <button id="toggleCategoryCreate" class="btn btn-primary text-right pull-left">Add New</button>
+                                </div>
                             </p>
+
+                            @* Ajax - Step 10 *@
+                            <div id="CategoryCreate">
+                                @Html.Partial("CategoryCreate", new StoreFrontProject.Data.EF.Category())
+                            </div>
+
                         }
-                        <table class="table">
+                        <table class="table" id="CategoryTable">
                             <tr>
                                 <th>
                                     @Html.DisplayNameFor(model => model.CategoryName)
@@ -36,7 +50,7 @@
 
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr id="Category-@item.CategoryID">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CategoryName)
                                     </td>
@@ -46,12 +60,22 @@
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <td class="text-right">
-                                            @Html.ActionLink(" ", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-primary fas fa-pencil-alt" })
-                                            @Html.ActionLink(" ", "Details", new { id = item.CategoryID }, new { @class = "btn btn-success fas fa-info" })
-                                            @if (User.IsInRole("Admin"))
-                                            {
-                                                @Html.ActionLink(" ", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-danger fa fa-trash" })
-                                            }
+                                            @*@Html.ActionLink(" ", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-primary fas fa-pencil-alt" })
+                                    @Html.ActionLink(" ", "Details", new { id = item.CategoryID }, new { @class = "btn btn-success fas fa-info" })
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @Html.ActionLink(" ", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-danger fa fa-trash" })
+                                    }*@
+                                            @Ajax.ActionLink("Delete", "AjaxDelete", "Categories", new { id = item.CategoryID },
+                                                new AjaxOptions {
+                                                    HttpMethod = "POST",
+                                                    Confirm = $"Are you sure you want to delete {item.CategoryName} from categories?",
+                                                    OnSuccess = "deleteConfirmed",
+                                                    OnFailure = "deleteFailed"
+                                                }, new { @class = "btn btn-warning" })
+
+                                            @* Ajax - Step 6 *@
+                                            <a href="" class="DetailsLink btn btn-info" id="@item.CategoryID">Details</a>
                                         </td>
                                     }
                                 </tr>
@@ -59,9 +83,113 @@
 
                         </table>
 
+                        @* Ajax - Step 7 *@
+                        <div id="CategoryDetails"></div>
+                        @* This is a placeholder for eventual details content to be loaded in a pop-up *@
+
                     </div>
                 </div>
+
+                @* Ajax - Step 5 *@
+                <div id="MessageDisplay" class="row" style="margin-left: 25%">
+                    <div class="col-md-offset-2 col-md-8 col-md-offset-2" id="MessageContent"></div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+
+        //AJAX - Step 3
+        //*************** AJAx Delete Confimed **********//
+        function deleteConfirmed(response, status, data) {
+            //remove the row from the table onscreen
+            var rowID = "#Category-" + response.id;
+            $("#CategoryTable").find(rowID).remove();
+
+            //display a status message (use AJAX response's message property)
+            $("#MessageContent").html("<div class='alert alert-success'>" + response.message + "</div>");
+        }
+        function deleteFailed(response, status, data) {
+            //The params above are included as demo that you can send back some data from the server on a failed operation
+            //to show to the user. In our example, we will use just a gereric message.
+            $("#MessageContent").html("<div class='alert alert-danger'>Delete unsuccessful. Is this category referenced by a product? If so, change the products's category or delete the product.</div>");
+        }
+
+        //********** AJAX Details **********//
+        $('a.DetailsLink').click(function (e) {
+            e.preventDefault(); //this prevents the default behavior of the page reloading after clicking <a>
+
+            //target pop-up placeholder div, pass it data (this clicked items id)
+            //then apply jQueryUI plugin to make it a pop-up w/some settings
+            //open PubDetails partial view in the pop-up for the correct publisher
+            $("#CategoryDetails").data('cId', $(this).attr('id'))
+                .dialog({
+                    width: 400,
+                    height: 200,
+                    open: function () {
+                        var catID = $(this).data('cId');
+                        $(this).load("/Categories/CategoryDetails/" + catID)
+                    },
+                    title: "Category Details",
+                    modal: true,
+                    resizable: false
+                })
+        });//end details click event
+
+        //********** AJAX Create **********//
+        //Ajax - Step 12
+
+        $('#CategoryCreate').hide(); //starts the form as bing hidden when the page first loads
+
+        $('#toggleCategoryCreate').click(function () {
+            $('#CategoryCreate').toggle();//flips the div where the partial view is rendered between being show/hidden
+        });
+
+        //Ajax - Step 14
+        // *********** AJAX CREATE ************* //
+        /* Summary: when the form is submitted, we format data (serialize) it.
+         * The notification (MessageContent) will show status updates.
+         * jquery Ajax will:
+         *  --call the POST AjaxCreate action from Publishers controller
+         *  --pass json data from form
+         *  --on failure, will:
+         *      *notify user of error
+         *  --on success, will:
+         *      *notify user of success,
+         *      *reset the form
+         *      *"add" the new row to the publishers table on this page.
+         * */
+
+        $('#CategoryCreateForm').submit(function (e) {
+            var formData = $(this).serializeArray();
+            console.log(formData);
+            e.preventDefault();
+
+            $.ajax({
+                url: "/Categories/AjaxCreate",
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                error: function (e) {
+                    $('#MessageContent').html("<div class='alert alert-danger'>There was a problem!</div>");
+                },
+                success: function (response) {
+                    $("#MessageContent").html("<div class='alert alert-success'>Record Added!</div>");
+                    $("#CategoryCreateForm")[0].reset();
+                    $(function () {
+                        var row = '<tr><td>' + response.CategoryName
+                            + '</td><td>' + response.CategoryDesc
+                            + '</td><td>Refresh to view options</td></tr>';
+
+                        $('#CategoryTable').append(row);
+                    });
+                }
+            });
+        });
+
+    </script>
+}
