@@ -82,6 +82,7 @@
                                 }
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
@@ -94,7 +95,11 @@
     <script>
 
         $(document).ready(function () {
-            $('.data-table').DataTable();
+            $('.data-table').DataTable({
+                language: {
+                    infoEmpty: "No results found. Please refine search query."
+                }
+            });
         });
 
     </script>

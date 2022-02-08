@@ -1,5 +1,7 @@
 ﻿@model PagedList.IPagedList<StoreFrontProject.Data.EF.Product>
 @using PagedList.Mvc
+@using System.Linq
+@using StoreFrontProject.UI.MVC.Exceptions;
 
 @{
     ViewBag.Title = "Products";
@@ -45,6 +47,20 @@
         <div class="row">
             @foreach (var item in Model)
             {
+                try
+                {
+                    //    //bool NoResultsCheck = false;
+
+                    if (Model.PageNumber == 0 )
+                    {
+                        throw new NoResultsFound();
+                    }
+
+                }
+                catch (Exception)
+                {
+                    Url.Action("Error", "NoResults"); //handle error nicely: send them to a page for these errors
+                }
                 <div class="col-lg-4">
                     <div class="item">
                         <div class="thumb">
@@ -114,3 +130,25 @@
     </div>
 </section>
 <!-- ***** Products Area Ends ***** -->
+
+<script>
+
+
+    try {
+        //    //bool NoResultsCheck = false;
+
+        if () {
+            return View();
+        }
+        else {
+            throw new NoResultsFound();
+        }
+
+    }
+    catch (Exception) {
+
+        return RedirectToAction("NoResults"); //handle error nicely: send them to a page for these errors
+    }
+
+
+</script>

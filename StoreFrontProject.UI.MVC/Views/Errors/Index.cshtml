@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Error Handling";
+}
+
+<div class="main-banner" id="top">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="productWrapper">
+        <div class="col-md-12">
+            <div id="mainContent">
+                <div class="formContainer col-md-12">
+
+                    <div class="col-md-12">
+                        @*Simulates NoResults test. Success = Success page. Failure = caught exception, redirect to custom-specific error page.*@
+                        <p>
+                            @Html.ActionLink("Test NoResults Custom Exception", "NoResultsTest", "Errors", null, new { @class = "btn btn-primary" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

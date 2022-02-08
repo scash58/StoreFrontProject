@@ -178,6 +178,7 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManufacturersController.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Controllers\UserDetailsController.cs" />
+    <Compile Include="Exceptions\NoResultsFound.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -367,6 +369,7 @@
     <Content Include="Content\assets\js\slick.js" />
     <Content Include="Content\assets\js\waypoints.min.js" />
     <Content Include="Content\assets\css\PagedList.css" />
+    <Content Include="error.html" />
     <Content Include="_Archive\_OriginalContent\bootstrap-theme.css" />
     <Content Include="_Archive\_OriginalContent\bootstrap-theme.min.css" />
     <Content Include="_Archive\_OriginalContent\bootstrap.css" />
@@ -592,6 +595,9 @@
     <Content Include="Views\UserDetails\Index.cshtml" />
     <Content Include="Views\Categories\CategoryDetails.cshtml" />
     <Content Include="Views\Categories\CategoryCreate.cshtml" />
+    <Content Include="Views\Errors\Index.cshtml" />
+    <Content Include="Views\Errors\NoResultsTest.cshtml" />
+    <Content Include="Views\Errors\NoResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
