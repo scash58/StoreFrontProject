@@ -15,7 +15,7 @@
                             <h4>Paintball Shop</h4>
                             <span>Everything you need for a fun paintball experience</span>
                             <div class="main-border-button">
-                                <a href="#">Purchase Now!</a>
+                                <a href="@Url.Action("Products", "Home")">Purchase Now!</a>
                             </div>
                         </div>
                         <img src="~/Content/assets/images/homepage/left-banner-image.jpg" alt="">
@@ -37,7 +37,7 @@
                                             <h4>Markers</h4>
                                             <p>Best Markers for the price</p>
                                             <div class="main-border-button">
-                                                <a href="#">Discover More</a>
+                                                <a href="@Url.Action("Products", new { searchString = "Paintball Guns" })">Discover More</a>
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                             <h4>Clothing &amp; Masks</h4>
                                             <p>Protective equipment to help you play safe.</p>
                                             <div class="main-border-button">
-                                                <a href="#">Discover More</a>
+                                                <a href="@Url.Action("Products", new { searchString = "Clothing" })">Discover More</a>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                             <h4>Paintballs</h4>
                                             <p>Best Paintballs on the Market.</p>
                                             <div class="main-border-button">
-                                                <a href="#">Discover More</a>
+                                                <a href="@Url.Action("Products", new { searchString = "Paintballs" })">Discover More</a>
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@
                                             <h4>Paintball Accessories</h4>
                                             <p>Accessories to keep you running.</p>
                                             <div class="main-border-button">
-                                                <a href="#">Discover More</a>
+                                                <a href="@Url.Action("Products", new { searchString = "Accessories" })">Discover More</a>
                                             </div>
                                         </div>
                                     </div>
@@ -129,33 +129,27 @@
             <div class="col-lg-12">
                 <div class="men-item-carousel">
                     <div class="owl-men-item owl-carousel">
-                        @foreach (var gun in Model.TakeWhile(g => g.CategoryID == 1))
+                        @foreach (var gun in Model.Where(g => g.CategoryID == 1))
                         {
                             <div class="item">
                                 <div class="thumb">
-                                    <div class="hover-content">
-                                        <ul>
-                                            <li><a href="@Url.Action("Details", "Products", new { id = gun.ProductID })"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <img src="~/Content/assets/images/products/@gun.ProductImage" alt="Product Image" title="@gun.ProductImage" />
+                                    <a href="@Url.Action("Details", "Products", new { id = gun.ProductID })">
+                                        <img src="~/Content/assets/images/products/@gun.ProductImage" alt="Product Image" title="@gun.ProductImage" />
+                                    </a>
                                 </div>
                                 <div class="down-content">
                                     <h4>@Html.DisplayFor(modelItem => gun.ProductName)</h4>
                                     <span>@Html.DisplayFor(modelItem => gun.UnitPrice)</span>
                                 </div>
                                 @* Shopping Cart Step 2 *@
-                                <p class="text-center">
+                                @*<p class="text-center">
                                     @using (Html.BeginForm("AddToCart", "Products", new { @productID = gun.ProductID }, FormMethod.Post, new { @class = "text-center" }))
                                     {
-                                        @*@Html.HiddenFor(x => x.ProductID)*@
                                         <span class="label test-left">Quantity: </span>
                                         @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
                                         <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
                                     }
-                                </p>
+                                </p>*@
                             </div>
                         }
                     </div>
@@ -182,23 +176,27 @@
             <div class="col-lg-12">
                 <div class="women-item-carousel">
                     <div class="owl-women-item owl-carousel">
-                        @foreach (var cloths in Model.TakeWhile(c => c.Category.CategoryName == "Paintball Guns"))
+                        @foreach (var cloths in Model.Where(c => c.CategoryID == 2))
                         {
                             <div class="item">
                                 <div class="thumb">
-                                    <div class="hover-content">
-                                        <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <img src="~/Content/assets/images/products/@cloths.ProductImage" alt="Product Image" title="@cloths.ProductImage">
+                                    <a href="@Url.Action("Details", "Products", new { id = cloths.ProductID })">
+                                        <img src="~/Content/assets/images/products/@cloths.ProductImage" alt="Product Image" title="@cloths.ProductImage">
+                                    </a>
                                 </div>
                                 <div class="down-content">
                                     <h4>@Html.DisplayFor(modelItem => cloths.ProductName)</h4>
                                     <span>@Html.DisplayFor(modelItem => cloths.UnitPrice)</span>
                                 </div>
+                                @* Shopping Cart Step 2 *@
+                                @*<p class="text-center">
+                                    @using (Html.BeginForm("AddToCart", "Products", new { @productID = cloths.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+                                    {
+                                        <span class="label test-left">Quantity: </span>
+                                        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
+                                        <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                                    }
+                                </p>*@
                             </div>
                         }
                     </div>
@@ -225,23 +223,27 @@
             <div class="col-lg-12">
                 <div class="kid-item-carousel">
                     <div class="owl-kid-item owl-carousel">
-                        @foreach (var access in Model.TakeWhile(a => a.Category.CategoryName == "Paintball Clothing/Mask"))
+                        @foreach (var access in Model.Where(a => a.CategoryID == 3))
                         {
                             <div class="item">
                                 <div class="thumb">
-                                    <div class="hover-content">
-                                        <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <img src="~/Content/assets/images/products/@access.ProductImage" alt="Product Image" title="@access.ProductImage" />
+                                    <a href="@Url.Action("Details", "Products", new { id = access.ProductID })">
+                                        <img src="~/Content/assets/images/products/@access.ProductImage" alt="Product Image" title="@access.ProductImage" />
+                                    </a>
                                 </div>
                                 <div class="down-content">
                                     <h4>@Html.DisplayFor(modelItem => access.ProductName)</h4>
                                     <span>@Html.DisplayFor(modelItem => access.UnitPrice)</span>
                                 </div>
+                                @* Shopping Cart Step 2 *@
+                                @*<p class="text-center">
+                                    @using (Html.BeginForm("AddToCart", "Products", new { @productID = access.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+                                    {
+                                        <span class="label test-left">Quantity: </span>
+                                        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
+                                        <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                                    }
+                                </p>*@
                             </div>
                         }
                     </div>

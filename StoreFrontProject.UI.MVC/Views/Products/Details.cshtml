@@ -10,7 +10,7 @@
     <div class="indexWrapper">
         <div class="col-md-12">
             <div id="mainContent">
-                <div class="formContainer col-md-6">
+                <div class="formContainer col-lg-6 col-md-8 col-sm-12">
                     <div>
                         <h4>Product</h4>
                         <hr />
@@ -69,8 +69,11 @@
                     </p>
 
                     <p>
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-secondary" })
-                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+                        @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-secondary" })
+                        }
+                        @Html.ActionLink("Back to Products", "Products", "Home", null, new { @class = "btn btn-success" })
                     </p>
                 </div>
             </div>

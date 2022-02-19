@@ -96,7 +96,7 @@
                             @* Shopping Cart Step 8 *@
                             @if (Session["cart"] != null)
                             {
-
+                                // ||
 
                                 <li class="nav-item">
                                     @{
@@ -105,9 +105,19 @@
                                         var prodCount = prods.Sum(p => p.Value.Qty);
 
                                     }
-                                    <a href="@Url.Action("index", "ShoppingCart")">
-                                        <i class="fa fa-shopping-cart fa-lg"></i>
-                                        <sup style="color:white;
+                                    @if (prodCount == 0)
+                                    {
+
+                                        <a href="@Url.Action("index", "ShoppingCart")">
+                                            <i class="fa fa-shopping-cart fa-lg"></i>
+                                        </a>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("index", "ShoppingCart")">
+                                            <i class="fa fa-shopping-cart fa-lg"></i>
+                                            <sup style="color:white;
                                                 background-color:red;
                                                 border-radius:40%;
                                                 display:inline-block;
@@ -115,20 +125,21 @@
                                                 height:1em;
                                                 padding:1em;
                                                 text-align:center">
-                                            @prodCount
+                                                @prodCount
 
-                                        </sup>
-                                    </a>
-
-
+                                            </sup>
+                                        </a>
+                                    }
                                 </li>
                             }
-                            @*else
-                                {
+                            else
+                            {
+                                <li>
                                     <a href="@Url.Action("index", "ShoppingCart")">
                                         <i class="fa fa-shopping-cart fa-lg"></i>
                                     </a>
-                                }*@
+                                </li>
+                            }
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -142,9 +153,9 @@
     <!-- ***** Header Area End ***** -->
     <section>
 
-        
+
         @RenderBody()
-        
+
 
     </section>
     <!-- ***** Footer Start ***** -->
@@ -168,9 +179,10 @@
                 <div class="col-lg-3">
                     <h4>Shopping &amp; Categories</h4>
                     <ul>
-                        <li><a href="#">Paintball Guns</a></li>
-                        <li><a href="#">Clothing &amp; Masks</a></li>
-                        <li><a href="#">Paintball Accessories</a></li>
+                        <li><a href="@Url.Action("Products", "Home", new { searchString = "Paintball Guns" })">Paintball Guns</a></li>
+                        <li><a href="@Url.Action("Products", "Home", new { searchString = "Clothing" })">Clothing &amp; Masks</a></li>
+                        <li><a href="@Url.Action("Products", "Home", new { searchString = "Accessories" })">Paintball Accessories</a></li>
+                        <li><a href="@Url.Action("Products", "Home", new { searchString = "Paintballs" })">Paintballs &amp; Grenades</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3">

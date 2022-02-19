@@ -14,7 +14,7 @@
             <div class="col-lg-12">
                 <div class="inner-content">
                     <h2>Check Our Products</h2>
-                    <span>Awesome products from the beginner or veteran players</span>
+                    <span>Awesome products for the beginner to veteran players</span>
                 </div>
             </div>
         </div>
@@ -44,34 +44,28 @@
         </div>
     </div>
     <div class="container">
+        @if (Model.PageCount > 0)
+        {
+
+
         <div class="row">
+
             @foreach (var item in Model)
             {
-                try
-                {
-                    //    //bool NoResultsCheck = false;
 
-                    if (Model.PageNumber == 0 )
-                    {
-                        throw new NoResultsFound();
-                    }
-
-                }
-                catch (Exception)
-                {
-                    Url.Action("Error", "NoResults"); //handle error nicely: send them to a page for these errors
-                }
                 <div class="col-lg-4">
                     <div class="item">
                         <div class="thumb">
-                            <div class="hover-content">
+                            @*<div class="hover-content">
                                 <ul>
                                     <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
-                            </div>
-                            <img src="~/Content/assets/images/products/@item.ProductImage" alt="Product Image" title="@item.ProductImage" />
+                            </div>*@
+                            <a href="@Url.Action("Details", "Products", new { id = item.ProductID })">
+                                <img src="~/Content/assets/images/products/@item.ProductImage" alt="Product Image" title="@item.ProductImage" />
+                            </a>
                         </div>
                         <div class="down-content">
                             <h4>@Html.DisplayFor(modelItem => item.ProductName)</h4>
@@ -107,26 +101,14 @@
                         For each page button, we are creating an Url.Action that goes to the BooksMVCPaging method on the Filters controller. It also
                         passes over the next page number.
                     *@
-
-                    @*<li>
-                                    <a href="#">1</a>
-                                </li>
-                                <li class="active">
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#">></a>
-                                </li>
-                        </ul>*@
                 </div>
             </div>
         </div>
+        }
+        else
+        {
+            <h1 class="text-center">Sorry, your search returned no results!</h1>
+        }
     </div>
 </section>
 <!-- ***** Products Area Ends ***** -->
@@ -134,21 +116,21 @@
 <script>
 
 
-    try {
-        //    //bool NoResultsCheck = false;
+    //try {
+    //    //    //bool NoResultsCheck = false;
 
-        if () {
-            return View();
-        }
-        else {
-            throw new NoResultsFound();
-        }
+    //    if () {
+    //        return View();
+    //    }
+    //    else {
+    //        throw new NoResultsFound();
+    //    }
 
-    }
-    catch (Exception) {
+    //}
+    //catch (Exception) {
 
-        return RedirectToAction("NoResults"); //handle error nicely: send them to a page for these errors
-    }
+    //    return RedirectToAction("NoResults"); //handle error nicely: send them to a page for these errors
+    //}
 
 
 </script>
