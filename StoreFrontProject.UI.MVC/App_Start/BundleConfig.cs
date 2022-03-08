@@ -24,29 +24,29 @@ namespace StoreFrontProject.UI.MVC
 
             bundles.Add(new ScriptBundle("~/bundles/template").Include(
                         "~/Content/assets/js/jquery-2.1.0.min.js",
-                        "~/Content/assets/js/popper.js",
+                        "~/Content/assets/js/popper.min.js",
                         "~/Content/assets/js/bootstrap.min.js",
-                        "~/Content/assets/js/owl-carousel.js",
-                        "~/Content/assets/js/accordions.js",
-                        "~/Content/assets/js/datepicker.js",
+                        "~/Content/assets/js/owl-carousel.min.js",
+                        "~/Content/assets/js/accordions.min.js",
+                        "~/Content/assets/js/datepicker.min.js",
                         "~/Content/assets/js/scrollreveal.min.js",
                         "~/Content/assets/js/waypoints.min.js",
                         "~/Content/assets/js/jquery.counterup.min.js",
                         "~/Content/assets/js/imgfix.min.js",
-                        "~/Content/assets/js/slick.js",
-                        "~/Content/assets/js/lightbox.js",
-                        "~/Content/assets/js/isotope.js",
-                        "~/Content/assets/js/custom.js"
+                        "~/Content/assets/js/slick.min.js",
+                        "~/Content/assets/js/lightbox.min.js",
+                        "~/Content/assets/js/isotope.min.js",
+                        "~/Content/assets/js/custom.min.js"
                         ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/assets/css/bootstrap.min.css",
-                        "~/Content/assets/css/font-awesome.css",
-                        "~/Content/assets/css/all.css",
-                        "~/Content/assets/css/templatemo-hexashop.css",
-                        "~/Content/assets/css/owl-carousel.css",
-                        "~/Content/assets/css/lightbox.css",
-                        "~/Content/assets/css/Style.css"
+                        "~/Content/assets/css/font-awesome.min.css",
+                        "~/Content/assets/css/all.min.css",
+                        "~/Content/assets/css/templatemo-hexashop.min.css",
+                        "~/Content/assets/css/owl-carousel.min.css",
+                        "~/Content/assets/css/lightbox.min.css",
+                        "~/Content/assets/css/Style.min.css"
                       ));
         }
     }

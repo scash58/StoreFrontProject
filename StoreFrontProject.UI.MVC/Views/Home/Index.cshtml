@@ -14,8 +14,14 @@
                         <div class="inner-content">
                             <h4>Paintball Shop</h4>
                             <span>Everything you need for a fun paintball experience</span>
-                            <div class="main-border-button">
-                                <a href="@Url.Action("Products", "Home")">Purchase Now!</a>
+                        </div>
+                        <div class="hover-content">
+                            <div class="inner">
+                                <h4>Paintball Shop</h4>
+                                <p>Everything you need for a fun paintball experience</p>
+                                <div class="main-border-button">
+                                    <a href="@Url.Action("Products", "Home")">Purchase Now!</a>
+                                </div>
                             </div>
                         </div>
                         <img src="~/Content/assets/images/homepage/left-banner-image.jpg" alt="">
@@ -94,7 +100,7 @@
                                     </div>
                                     <div class="hover-content">
                                         <div class="inner">
-                                            <h4>Paintball Accessories</h4>
+                                            <h4>Accessories</h4>
                                             <p>Accessories to keep you running.</p>
                                             <div class="main-border-button">
                                                 <a href="@Url.Action("Products", new { searchString = "Accessories" })">Discover More</a>
@@ -143,13 +149,13 @@
                                 </div>
                                 @* Shopping Cart Step 2 *@
                                 @*<p class="text-center">
-                                    @using (Html.BeginForm("AddToCart", "Products", new { @productID = gun.ProductID }, FormMethod.Post, new { @class = "text-center" }))
-                                    {
-                                        <span class="label test-left">Quantity: </span>
-                                        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
-                                        <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
-                                    }
-                                </p>*@
+                                        @using (Html.BeginForm("AddToCart", "Products", new { @productID = gun.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+                                        {
+                                            <span class="label test-left">Quantity: </span>
+                                            @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
+                                            <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                                        }
+                                    </p>*@
                             </div>
                         }
                     </div>
@@ -190,13 +196,13 @@
                                 </div>
                                 @* Shopping Cart Step 2 *@
                                 @*<p class="text-center">
-                                    @using (Html.BeginForm("AddToCart", "Products", new { @productID = cloths.ProductID }, FormMethod.Post, new { @class = "text-center" }))
-                                    {
-                                        <span class="label test-left">Quantity: </span>
-                                        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
-                                        <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
-                                    }
-                                </p>*@
+                                        @using (Html.BeginForm("AddToCart", "Products", new { @productID = cloths.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+                                        {
+                                            <span class="label test-left">Quantity: </span>
+                                            @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
+                                            <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                                        }
+                                    </p>*@
                             </div>
                         }
                     </div>
@@ -237,13 +243,13 @@
                                 </div>
                                 @* Shopping Cart Step 2 *@
                                 @*<p class="text-center">
-                                    @using (Html.BeginForm("AddToCart", "Products", new { @productID = access.ProductID }, FormMethod.Post, new { @class = "text-center" }))
-                                    {
-                                        <span class="label test-left">Quantity: </span>
-                                        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
-                                        <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
-                                    }
-                                </p>*@
+                                        @using (Html.BeginForm("AddToCart", "Products", new { @productID = access.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+                                        {
+                                            <span class="label test-left">Quantity: </span>
+                                            @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 35px;display: inline;" })
+                                            <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                                        }
+                                    </p>*@
                             </div>
                         }
                     </div>
@@ -253,3 +259,15 @@
     </div>
 </section>
 <!-- ***** Paintball Accessories Area Ends ***** -->
+@*<div class="thumb">
+        <div class="hover-content">
+            <div class="inner-content">
+                <h4>Paintball Shop</h4>
+                <span>Everything you need for a fun paintball experience</span>
+                <div class="main-border-button">
+                    <a href="@Url.Action("Products", "Home")">Purchase Now!</a>
+                </div>
+            </div>
+        </div>
+        <img src="~/Content/assets/images/homepage/left-banner-image.jpg" alt="">
+    </div>*@

@@ -685,6 +685,48 @@ banner
   margin-bottom: 30px;
 }
 
+    .main-banner .left-content .thumb .hover-content {
+        position: absolute;
+        top: 15px;
+        right: 30px;
+        left: 30px;
+        bottom: 45px;
+        text-align: center;
+        background-color: rgba(42,42,42,.97);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s;
+    }
+
+    .main-banner .left-content .thumb:hover .hover-content {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .main-banner .left-content .thumb .hover-content .inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+
+    .main-banner .left-content .thumb .hover-content h4 {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .main-banner .left-content .thumb .hover-content p {
+        color: #fff;
+        padding: 0px 20px;
+        margin-bottom: 20px;
+    }
+
+
+
+
 .main-banner .right-content .right-first-image {
   margin-bottom: 28.5px;
 }
