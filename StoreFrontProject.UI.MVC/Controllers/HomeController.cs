@@ -1,6 +1,7 @@
 ﻿using StoreFrontProject.Data.EF; //added to gain access to PaintballStoreEntities
 using StoreFrontProject.UI.MVC.Models; //added for access to the ContactViewModel
 using System; //added
+using System.Configuration;
 using System.Net;
 using System.Net.Mail; //added
 using System.Web.Mvc; //added
@@ -34,7 +35,7 @@ namespace StoreFrontProject.UI.MVC.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            //ViewBag.Message = "Your contact page.";
 
             return View();
         }
@@ -48,9 +49,23 @@ namespace StoreFrontProject.UI.MVC.Controllers
                 return View(cvm);
             }
 
-            string message = $"You have received an email from {cvm.Name} with a subject of {cvm.Subject}. Please respond to {cvm.Email} with your response to the following message: <br/>{cvm.Message}";
+            string message = $"You have received an email from {cvm.Name} with a subject of {cvm.Subject} from storefont. Please respond to {cvm.Email} with your response to the following message: <br/>{cvm.Message}";
             //MailMessage - What sends the email
-            MailMessage mm = new MailMessage("admin@scott-cashion.com", "scashion58@gmail.com", cvm.Subject, message);
+            MailMessage mm = new MailMessage(
+
+                //FROM
+                ConfigurationManager.AppSettings["EmailUser"].ToString(),
+
+                //TO
+                ConfigurationManager.AppSettings["EmailTo"].ToString(),
+
+                //SUBJECT
+                cvm.Subject,
+
+                //BODY
+                message
+
+                );
 
             //MailMessage properties
             //Allow HTML in the email
@@ -60,12 +75,13 @@ namespace StoreFrontProject.UI.MVC.Controllers
             mm.ReplyToList.Add(cvm.Email);
 
             //SmtpClient - This is the info from the host that allows this to be sent
-            SmtpClient client = new SmtpClient("mail.scott-cashion.com");
+            SmtpClient client = new SmtpClient(ConfigurationManager.AppSettings["EmailClient"].ToString());
             //client.Port = 8889; //alternative port number is 8889 or 25
             //client.EnableSsl = false;
 
             //Client Credentials
-            client.Credentials = new NetworkCredential("admin@scott-cashion.com", "P@ssw0rd");
+            client.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["EmailUser"].ToString(),
+                ConfigurationManager.AppSettings["EmailPass"].ToString());
 
             //Try to send the email
             try
@@ -77,6 +93,7 @@ namespace StoreFrontProject.UI.MVC.Controllers
             {
                 ViewBag.CustomerMessage = $"We're sorry your request could not be completed at this time. Please try again later. Error Message: " +
                     $"{ex.Message}<br/>{ex.StackTrace}";
+
                 return View(cvm);
             }
 

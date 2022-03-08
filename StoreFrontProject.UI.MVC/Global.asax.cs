@@ -38,7 +38,7 @@ namespace StoreFrontProject.UI.MVC
             //Response.Redirect("~/Errors/Unresolved");
 
             //v2 - SUPER SAFE - send them to a basic HTML page that's hard to fail
-            //Response.Redirect("~/error.html");
+            Response.Redirect("~/error.html");
 
             //commented this out to suppress it while we're still developing & troubleshooting
             //uncomment it before publishing for better user experience.

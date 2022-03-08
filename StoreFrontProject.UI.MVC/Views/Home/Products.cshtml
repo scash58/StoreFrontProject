@@ -97,7 +97,7 @@
 
                     @Html.PagedListPager(Model, page => Url.Action("Products", new { page, searchString = ViewBag.SearchString }))
                     @*
-                        The code above generates the individual page button. It uses the strongly typed collection defined on line 3 of this view.
+                        The code above generates the individual page button. It uses the strongly typed collection defined on line 1 of this view.
                         For each page button, we are creating an Url.Action that goes to the BooksMVCPaging method on the Filters controller. It also
                         passes over the next page number.
                     *@
